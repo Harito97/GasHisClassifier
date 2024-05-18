@@ -1,0 +1,1 @@
+# Đây là nhãn phân đoạn để train UNet
