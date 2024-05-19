@@ -1,0 +1,12 @@
+matplotlib
+pandas
+scikit-learn
+seaborn
+flask==2.2.2
+requests==2.31.0
+numpy==1.24.3
+beautifulsoup4==4.12.2
+werkzeug==2.2.3
+tensorflow==2.15.1
+keras==3.3.3
+opencv-python==4.9.0.80

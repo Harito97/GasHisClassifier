@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Cropper Result</title>
+</head>
+
+<body>
+    {% for image in images %}
+    <img src="{{url_for('static', filename=image)}}" alt="Cropped Image">
+    {% endfor %}
+</body>
+
+</html>
