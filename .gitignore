@@ -3,3 +3,4 @@ TrainModel/ResNet/resnet_best.keras
 TrainModel/Temp/
 GasHisSDB/
 GasHisSlideLevel/
+TrainModel/VGG/vgg_best_datav2.keras

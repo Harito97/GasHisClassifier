@@ -1,20 +1,18 @@
-# GasHisClassifier: Gastric Cancer Diagnosis from Whole Slide Images
+# GasHisClassifier: Gastric Cancer Diagnosis with patch images from Whole Slide Images
 
-This repository contains code and resources for detecting gastric cancer from Whole Slide Images (WSI) using deep learning models.
+This repository contains code and resources for detecting gastric cancer from Whole Slide Images (WSI) (processed into patch images) using deep learning models.
 
 ## Features
 
 - **Deep Learning Models**: Implementations of VGG16, ResNet50, and EfficientNetB0 for image classification.
-- **Data Processing**: Scripts for preprocessing and augmenting the WSI data.
-- **Training and Evaluation**: Jupyter notebooks for training models and evaluating their performance.
+- **Data Processing**: Scripts for preprocessing and augmenting WSI data into patch images - smaller images.
+- **Training and Evaluation**: Training models and evaluating their performance.
 - **Web Application**: A simple web interface for uploading and classifying new images.
 
 ## Repository Structure
 
-- `data/`: Directory for storing dataset (can be excluded if too large).
-- `models/`: Pre-trained model weights.
-- `notebooks/`: Jupyter notebooks for data exploration, training, and clustering.
-- `scripts/`: Python scripts for data processing and utility functions.
+- `Data/`: Directory for storing datasets (can be excluded if too large) & script for image processing.
+- `TrainModel/`: Scripts for training models.
 - `Web/`: Flask web application for image classification.
 - `requirements.txt`: Required Python packages.
 
@@ -26,6 +24,7 @@ This repository contains code and resources for detecting gastric cancer from Wh
 git clone https://github.com/Harito97/GasHisClassifier.git
 cd GasHisClassifier
 ```
+If you can not download, then zip the repository and download the zip file of all the repository.
 
 ### Step 2: Install Dependencies
 
@@ -39,10 +38,10 @@ pip install -r requirements.txt
 
 ### Step 3: Prepare Data
 
-If the `data/` directory is too large, you can exclude it during the download. The code assumes you have a dataset ready in the `data/` directory. You can organize your dataset as follows:
+If the `Data/` directory is too large, you can exclude it during the download. The code assumes you have a dataset ready in the `Data/` directory. You can organize your dataset as follows:
 
 ```
-data/
+data_version_xx/
 └── train/
     ├── class1/
     ├── class2/
@@ -57,19 +56,15 @@ data/
     └── ...
 ```
 
-### Step 4: Run Jupyter Notebooks
+### Step 4: Data Processing and Model
 
-1. **Training the Model**: Use the following notebook to train your model.
+1. **Data Exploration and Clustering**: 
 
-   ```bash
-   jupyter notebook notebooks/train_model.ipynb
-   ```
+   Include some techniques to explore the data, use clustering algorithms to try classification of images and preprocess the data to make data version 2.
 
-2. **Data Exploration and Clustering**: Use the following notebook to explore your data and perform clustering.
+2. **Training the Model**:  
 
-   ```bash
-   jupyter notebook notebooks/data_exploration_clustering.ipynb
-   ```
+   Run Python files with the format `Train_*.py` in `TrainModel/`, where `*` can be `VGGxx`, `ResNetxx`, `EfficientNetxx`.
 
 ### Step 5: Run the Web Application
 
@@ -82,12 +77,6 @@ data/
 2. **Access the Web Application**:
 
    Open your browser and navigate to `http://localhost:5000`.
-
-## Usage
-
-- **Train Model**: Follow the steps in `notebooks/train_model.ipynb` to train your classification model.
-- **Explore Data and Cluster Segments**: Use `notebooks/data_exploration_clustering.ipynb` for data visualization and clustering analysis.
-- **Classify New Images**: Use the web interface to upload and classify new WSI images.
 
 ## Contributing
 

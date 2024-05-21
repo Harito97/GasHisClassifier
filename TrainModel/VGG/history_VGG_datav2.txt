@@ -1,0 +1,166 @@
+Microsoft Windows [Version 10.0.22621.3593]
+(c) Microsoft Corporation. All rights reserved.
+
+D:\Projects\GasHisClassifier\TrainModel\VGG>python VGG_datav2.py
+2024-05-20 23:56:04.647628: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-05-20 23:56:05.337233: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Found 58660 images belonging to 2 classes.
+Found 58660 images belonging to 2 classes.
+Found 29331 images belonging to 2 classes.
+2024-05-20 23:56:09.118921: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Class Indices:  {'Abnormal': 0, 'Normal': 1}
+Number of training samples: 58660
+Number of validation samples: 58660
+Number of test samples: 29331
+Training set:
+Abnormal (0): 23660 files
+Normal (1): 35000 files
+Validation set:
+Abnormal (0): 23660 files
+Normal (1): 35000 files
+Test set:
+Abnormal (0): 11831 files
+Normal (1): 17500 files
+Model: "functional_1"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ input_layer (InputLayer)             │ (None, 64, 64, 3)           │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ vgg16 (Functional)                   │ (None, 2, 2, 512)           │      14,714,688 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ global_average_pooling2d             │ (None, 512)                 │               0 │
+│ (GlobalAveragePooling2D)             │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 1024)                │         525,312 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 1024)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 2)                   │           2,050 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 15,242,050 (58.14 MB)
+ Trainable params: 527,362 (2.01 MB)
+ Non-trainable params: 14,714,688 (56.13 MB)
+Epoch 1/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7501 - loss: 0.5085
+Epoch 1: val_loss improved from inf to 0.45781, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1689s 7s/step - accuracy: 0.7501 - loss: 0.5084 - val_accuracy: 0.7759 - val_loss: 0.4578
+Epoch 2/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7728 - loss: 0.4666
+Epoch 2: val_loss improved from 0.45781 to 0.44992, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1727s 7s/step - accuracy: 0.7728 - loss: 0.4666 - val_accuracy: 0.7816 - val_loss: 0.4499
+Epoch 3/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7829 - loss: 0.4526
+Epoch 3: val_loss improved from 0.44992 to 0.44320, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1420s 6s/step - accuracy: 0.7829 - loss: 0.4526 - val_accuracy: 0.7862 - val_loss: 0.4432
+Epoch 4/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7810 - loss: 0.4501
+Epoch 4: val_loss improved from 0.44320 to 0.43955, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1324s 5s/step - accuracy: 0.7810 - loss: 0.4501 - val_accuracy: 0.7886 - val_loss: 0.4396
+Epoch 5/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7849 - loss: 0.4463
+Epoch 5: val_loss improved from 0.43955 to 0.43760, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1325s 5s/step - accuracy: 0.7849 - loss: 0.4463 - val_accuracy: 0.7898 - val_loss: 0.4376
+Epoch 6/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7889 - loss: 0.4422
+Epoch 6: val_loss improved from 0.43760 to 0.43310, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1323s 5s/step - accuracy: 0.7889 - loss: 0.4422 - val_accuracy: 0.7928 - val_loss: 0.4331
+Epoch 7/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7935 - loss: 0.4330
+Epoch 7: val_loss improved from 0.43310 to 0.43112, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1322s 5s/step - accuracy: 0.7935 - loss: 0.4330 - val_accuracy: 0.7950 - val_loss: 0.4311
+Epoch 8/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7962 - loss: 0.4285
+Epoch 8: val_loss improved from 0.43112 to 0.42889, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1325s 5s/step - accuracy: 0.7962 - loss: 0.4285 - val_accuracy: 0.7954 - val_loss: 0.4289
+Epoch 9/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7949 - loss: 0.4278
+Epoch 9: val_loss improved from 0.42889 to 0.42747, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1326s 5s/step - accuracy: 0.7949 - loss: 0.4278 - val_accuracy: 0.7967 - val_loss: 0.4275
+Epoch 10/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7998 - loss: 0.4226
+Epoch 10: val_loss improved from 0.42747 to 0.42568, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1323s 5s/step - accuracy: 0.7998 - loss: 0.4227 - val_accuracy: 0.7985 - val_loss: 0.4257
+Epoch 11/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8015 - loss: 0.4228
+Epoch 11: val_loss improved from 0.42568 to 0.42431, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1324s 5s/step - accuracy: 0.8015 - loss: 0.4228 - val_accuracy: 0.7986 - val_loss: 0.4243
+Epoch 12/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7968 - loss: 0.4254
+Epoch 12: val_loss improved from 0.42431 to 0.42225, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1324s 5s/step - accuracy: 0.7969 - loss: 0.4254 - val_accuracy: 0.7991 - val_loss: 0.4223
+Epoch 13/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.7990 - loss: 0.4228
+Epoch 13: val_loss improved from 0.42225 to 0.42057, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1324s 5s/step - accuracy: 0.7990 - loss: 0.4228 - val_accuracy: 0.8007 - val_loss: 0.4206
+Epoch 14/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8017 - loss: 0.4180
+Epoch 14: val_loss did not improve from 0.42057
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1376s 6s/step - accuracy: 0.8017 - loss: 0.4180 - val_accuracy: 0.8001 - val_loss: 0.4207
+Epoch 15/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 4s/step - accuracy: 0.8066 - loss: 0.4127
+Epoch 15: val_loss improved from 0.42057 to 0.41905, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1653s 7s/step - accuracy: 0.8066 - loss: 0.4127 - val_accuracy: 0.8017 - val_loss: 0.4190
+Epoch 16/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8071 - loss: 0.4083
+Epoch 16: val_loss improved from 0.41905 to 0.41765, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1326s 5s/step - accuracy: 0.8071 - loss: 0.4083 - val_accuracy: 0.8022 - val_loss: 0.4177
+Epoch 17/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8062 - loss: 0.4080
+Epoch 17: val_loss improved from 0.41765 to 0.41680, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1323s 5s/step - accuracy: 0.8062 - loss: 0.4081 - val_accuracy: 0.8027 - val_loss: 0.4168
+Epoch 18/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8067 - loss: 0.4108
+Epoch 18: val_loss improved from 0.41680 to 0.41576, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1323s 5s/step - accuracy: 0.8067 - loss: 0.4108 - val_accuracy: 0.8038 - val_loss: 0.4158
+Epoch 19/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8055 - loss: 0.4072
+Epoch 19: val_loss did not improve from 0.41576
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1324s 5s/step - accuracy: 0.8055 - loss: 0.4072 - val_accuracy: 0.8037 - val_loss: 0.4171
+Epoch 20/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8092 - loss: 0.4058
+Epoch 20: val_loss improved from 0.41576 to 0.41323, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1320s 5s/step - accuracy: 0.8092 - loss: 0.4058 - val_accuracy: 0.8059 - val_loss: 0.4132
+Epoch 21/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8108 - loss: 0.4039
+Epoch 21: val_loss improved from 0.41323 to 0.41298, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1321s 5s/step - accuracy: 0.8108 - loss: 0.4039 - val_accuracy: 0.8057 - val_loss: 0.4130
+Epoch 22/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8087 - loss: 0.4044
+Epoch 22: val_loss did not improve from 0.41298
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1323s 5s/step - accuracy: 0.8088 - loss: 0.4043 - val_accuracy: 0.8042 - val_loss: 0.4152
+Epoch 23/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8127 - loss: 0.3983
+Epoch 23: val_loss improved from 0.41298 to 0.41239, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1320s 5s/step - accuracy: 0.8127 - loss: 0.3983 - val_accuracy: 0.8071 - val_loss: 0.4124
+Epoch 24/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8138 - loss: 0.3997
+Epoch 24: val_loss improved from 0.41239 to 0.41084, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1324s 5s/step - accuracy: 0.8138 - loss: 0.3997 - val_accuracy: 0.8071 - val_loss: 0.4108
+Epoch 25/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8127 - loss: 0.4011
+Epoch 25: val_loss did not improve from 0.41084
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1325s 5s/step - accuracy: 0.8127 - loss: 0.4011 - val_accuracy: 0.8059 - val_loss: 0.4125
+Epoch 26/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8141 - loss: 0.3967
+Epoch 26: val_loss did not improve from 0.41084
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1323s 5s/step - accuracy: 0.8141 - loss: 0.3967 - val_accuracy: 0.8060 - val_loss: 0.4113
+Epoch 27/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8121 - loss: 0.3996
+Epoch 27: val_loss improved from 0.41084 to 0.40944, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1336s 5s/step - accuracy: 0.8121 - loss: 0.3996 - val_accuracy: 0.8072 - val_loss: 0.4094
+Epoch 28/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8158 - loss: 0.3954
+Epoch 28: val_loss improved from 0.40944 to 0.40835, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1329s 5s/step - accuracy: 0.8158 - loss: 0.3954 - val_accuracy: 0.8083 - val_loss: 0.4084
+Epoch 29/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8169 - loss: 0.3933
+Epoch 29: val_loss did not improve from 0.40835
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1328s 5s/step - accuracy: 0.8169 - loss: 0.3933 - val_accuracy: 0.8068 - val_loss: 0.4111
+Epoch 30/100
+245/245 ━━━━━━━━━━━━━━━━━━━━ 0s 3s/step - accuracy: 0.8181 - loss: 0.3886
+Epoch 30: val_loss improved from 0.40835 to 0.40709, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1331s 5s/step - accuracy: 0.8181 - loss: 0.3886 - val_accuracy: 0.8090 - val_loss: 0.4071
+Epoch 31: val_loss improved from 0.40709 to 0.40685, saving model to vgg_best_datav2.keras
+245/245 ━━━━━━━━━━━━━━━━━━━━ 1361s 6s/step - accuracy: 0.8210 - loss: 0.3871 - val_accuracy: 0.8090 - val_loss: 0.4069

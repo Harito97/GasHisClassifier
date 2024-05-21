@@ -56,32 +56,73 @@ def diagnosis():
                         result = "This image is normal."
                     return render_template('diagnosis.html', uploaded_image=uploaded_image, result=result)
                 elif task_type == 'detection':
+                    # image_copy = image.copy()
+                    # window_size = (64, 64)
+                    # stride = 64
+                    # height, width, _ = image.shape
+                    # predictions = []
+                    # for y in range(0, height - window_size[1] + 1, stride):
+                    #     for x in range(0, width - window_size[0] + 1, stride):
+                    #         image_patch = image[y:y +
+                    #                             window_size[1], x:x+window_size[0]]
+                    #         image_patch = cv2.resize(image_patch, (64, 64))
+                    #         image_patch = np.expand_dims(image_patch, axis=0)
+                    #         prediction = model.predict(image_patch)
+                    #         prediction = np.argmax(prediction, axis=1)
+                    #         predictions.append(prediction)
+                    #         if prediction == 1:
+                    #             cv2.rectangle(image_copy, (x, y),
+                    #                           (x+window_size[1], y+window_size[1]), (255, 0, 0), 2)
+                    # cv2.imwrite(os.path.join(
+                    #     'static/results/', filename), image_copy)
+
+                    # count = 0
+                    # for i in predictions:
+                    #     if i == 1:
+                    #         count += 1
+                    # total = len(predictions)
+                    # return render_template('diagnosis.html', uploaded_image=uploaded_image, result_image=filename, count=count, total=total)
+                    
                     image_copy = image.copy()
                     window_size = (64, 64)
                     stride = 64
                     height, width, _ = image.shape
-                    predictions = []
+                    patches = []
+
+                    # Collect patches
                     for y in range(0, height - window_size[1] + 1, stride):
                         for x in range(0, width - window_size[0] + 1, stride):
-                            image_patch = image[y:y +
-                                                window_size[1], x:x+window_size[0]]
+                            image_patch = image[y:y+window_size[1], x:x+window_size[0]]
                             image_patch = cv2.resize(image_patch, (64, 64))
-                            image_patch = np.expand_dims(image_patch, axis=0)
-                            prediction = model.predict(image_patch)
-                            prediction = np.argmax(prediction, axis=1)
-                            predictions.append(prediction)
-                            if prediction == 1:
-                                cv2.rectangle(image_copy, (x, y),
-                                              (x+window_size[1], y+window_size[1]), (255, 0, 0), 2)
-                    cv2.imwrite(os.path.join(
-                        'static/results/', filename), image_copy)
+                            patches.append(image_patch)
 
-                    count = 0
-                    for i in predictions:
-                        if i == 1:
-                            count += 1
+                    # Convert patches to a NumPy array
+                    patches = np.array(patches)
+
+                    # Ensure patches have the correct shape (batch_size, height, width, channels)
+                    # patches = patches.astype('float32') / 255.0  # Normalizing if necessary
+                    patches = np.expand_dims(patches, axis=-1) if patches.shape[-1] == 1 else patches  # Add channel dimension if grayscale
+
+                    # Make predictions in a single batch
+                    predictions = model.predict(patches)
+                    predictions = np.argmax(predictions, axis=1)
+
+                    # Draw rectangles for positive predictions
+                    patch_idx = 0
+                    for y in range(0, height - window_size[1] + 1, stride):
+                        for x in range(0, width - window_size[0] + 1, stride):
+                            if predictions[patch_idx] == 1:
+                                cv2.rectangle(image_copy, (x, y), (x+window_size[0], y+window_size[1]), (255, 0, 0), 2)
+                            patch_idx += 1
+
+                    # Save the result image
+                    cv2.imwrite(os.path.join('static/results/', filename), image_copy)
+
+                    # Count positive predictions
+                    count = np.sum(predictions == 1)
                     total = len(predictions)
-                    return render_template('diagnosis.html', uploaded_image=uploaded_image, result_image=filename, count=count, total=total)
+
+                    return render_template('diagnosis.html', uploaded_image=filename, result_image=filename, count=count, total=total)
 
                 # chuẩn hóa ảnh
                 # image = image / 255.0
